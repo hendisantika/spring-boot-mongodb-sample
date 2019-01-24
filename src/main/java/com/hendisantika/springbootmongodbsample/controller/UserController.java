@@ -48,4 +48,14 @@ public class UserController {
         LOG.info("Saving user.");
         return userRepository.save(user);
     }
+
+    @GetMapping("/settings/{userId}")
+    public Object getAllUserSettings(@PathVariable String userId) {
+        Optional<User> user = userRepository.findById(userId);
+        if (!user.isPresent()) {
+            return user.getUserSettings();
+        } else {
+            return "User not found.";
+        }
+    }
 }

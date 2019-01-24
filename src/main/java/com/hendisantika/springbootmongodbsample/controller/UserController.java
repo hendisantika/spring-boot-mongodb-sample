@@ -58,4 +58,14 @@ public class UserController {
             return "User not found.";
         }
     }
+
+    @GetMapping("/settings/{userId}/{key}")
+    public String getUserSetting(@PathVariable String userId, @PathVariable String key) {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            return user.get().getUserSettings().get(key);
+        } else {
+            return "User not found.";
+        }
+    }
 }

@@ -4,11 +4,13 @@ import com.hendisantika.springbootmongodbsample.model.User;
 import com.hendisantika.springbootmongodbsample.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -32,9 +34,15 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @GetMapping
     public List<User> getAllUsers() {
         LOG.info("Getting all users.");
         return userRepository.findAll();
+    }
+
+    @GetMapping("/{userId}")
+    public Optional<User> getUser(@PathVariable String userId) {
+        LOG.info("Getting user with ID: {}.", userId);
+        return userRepository.findById(userId);
     }
 }

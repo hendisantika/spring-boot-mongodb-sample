@@ -4,10 +4,7 @@ import com.hendisantika.springbootmongodbsample.model.User;
 import com.hendisantika.springbootmongodbsample.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,5 +41,11 @@ public class UserController {
     public Optional<User> getUser(@PathVariable String userId) {
         LOG.info("Getting user with ID: {}.", userId);
         return userRepository.findById(userId);
+    }
+
+    @PostMapping("/create")
+    public User addNewUsers(@RequestBody User user) {
+        LOG.info("Saving user.");
+        return userRepository.save(user);
     }
 }

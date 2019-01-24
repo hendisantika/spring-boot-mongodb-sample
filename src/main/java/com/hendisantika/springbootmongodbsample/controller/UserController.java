@@ -52,8 +52,8 @@ public class UserController {
     @GetMapping("/settings/{userId}")
     public Object getAllUserSettings(@PathVariable String userId) {
         Optional<User> user = userRepository.findById(userId);
-        if (!user.isPresent()) {
-            return user.getUserSettings();
+        if (user.isPresent()) {
+            return user.get().getUserSettings();
         } else {
             return "User not found.";
         }

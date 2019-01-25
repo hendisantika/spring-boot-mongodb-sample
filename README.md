@@ -44,7 +44,15 @@ Response :
 }
 ```
 
+![Add new User](img/add.png "Add New User")
+
 Get All Users : http://localhost:8080/user/
+
+![List All Users](img/list.png "List All Users")
+
+Get User setting : http://localhost:8080/user/settings/{userId}
+
+![Get User setting](img/setting.png "Get User setting")
 
 
 

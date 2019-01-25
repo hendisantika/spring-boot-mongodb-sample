@@ -72,12 +72,15 @@ public class UserController {
     @GetMapping("/settings/{userId}/{key}/{value}")
     public String addUserSetting(@PathVariable String userId, @PathVariable String key, @PathVariable String value) {
         Optional<User> user = userRepository.findById(userId);
-        if (user.isPresent()) {
+        user.ifPresent(user1 -> {
             user.get().getUserSettings().put(key, value);
-            userRepository.save(user);
-            return "Key added";
-        } else {
-            return "User not found.";
-        }
+            userRepository.save(user1);
+        });
+//
+        return "Key added";
+//        } else {
+//            return "User not found.";
+//        }
+
     }
 }

@@ -57,4 +57,14 @@ public class User {
     public void setUserSettings(Map<String, String> userSettings) {
         this.userSettings = userSettings;
     }
+
+    public User() {
+    }
+
+    public User(String userId, String name, Date creationDate, Map<String, String> userSettings) {
+        this.userId = userId;
+        this.name = name;
+        this.creationDate = creationDate;
+        this.userSettings = userSettings;
+    }
 }
